@@ -145,10 +145,10 @@ function generateOrderNumber() {
         if (window.crypto && window.crypto.getRandomValues) {
             const arr = new Uint32Array(1);
             window.crypto.getRandomValues(arr);
-            return `KJ-${(arr[0] % 900000) + 100000}`;
+            return `${(arr[0] % 900000) + 100000}`;
         }
     } catch (e) {}
-    return `KJ-${Math.floor(Math.random() * 900000) + 100000}`;
+    return `${Math.floor(Math.random() * 900000) + 100000}`;
 }
 
 // ================= UI HELPERS =================
