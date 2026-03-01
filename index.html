@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="KODIJONG THE FOOD HUB - Experience the best KOTA in town with fresh ingredients, bold flavors, and authentic taste that brings the township to your plate!">
+    <link rel="canonical" href="https://www.kodijong.co.za/">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
+    
+    <!-- Open Graph for Social Media -->
+    <meta property="og:image" content="https://www.kodijong.co.za/ORDERING/loc2.jpg"/>
+    <meta property="og:title" content="KODIJONG THE FOOD HUB">
+    <meta property="og:description" content="Experience the best KOTA in town with fresh ingredients, bold flavors, authentic taste!">
+    <meta property="og:url" content="https://www.kodijong.co.za">
+    <meta property="og:type" content="restaurant">
+    <meta property="og:site_name" content="KODIJONG THE FOOD HUB">
+    <meta property="og:locale" content="en_ZA">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" href="favicon/apple-touch-icon.png">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "KODIJONG THE FOOD HUB",
+      "image": "https://www.kodijong.co.za/ORDERING/loc2.jpg",
+      "url": "https://www.kodijong.co.za",
+      "logo": "https://www.kodijong.co.za/favicon/logo.png",
+      "servesCuisine": "South African Kasi Food",
+      "priceRange": "R17 - R130",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "232 Far East Bank",
+        "addressLocality": "Sandton",
+        "postalCode": "2014",
+        "addressCountry": "ZA"
+      },
+      "telephone": "+27839679365"
+    }
+    </script>
+
+    <title>KODIJONG THE FOOD HUB</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: '#C5A059',
+                        obsidian: '#0A0A0B',
+                        onyx: '#141416',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="font-sans">
+
+    <!-- Notification Toast -->
+    <div class="toast-container">
+        <div id="toast-msg" class="toast-msg">
+            <i class="fa-solid fa-circle-check text-xl"></i>
+            <span id="toast-text">Added to basket!</span>
+        </div>
+    </div>
+
+    <!-- Success Modal Pop-up -->
+    <div id="success-modal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="w-20 h-20 bg-gold/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <i class="fa-solid fa-cart-arrow-down text-3xl text-gold"></i>
+            </div>
+            <h3 class="text-2xl font-serif text-white mb-2">Excellent Choice!</h3>
+            <p class="text-white/60 text-sm mb-8">Your item has been safely added to your basket. Would you like to check out now or keep exploring?</p>
+            <div class="flex flex-col gap-3">
+                <button onclick="navigateTo('checkout'); closeModal()" class="gold-gradient text-black py-4 rounded-full font-black text-[10px] tracking-widest uppercase">Go to Checkout</button>
+                <button onclick="closeModal()" class="bg-white/5 text-white/70 py-4 rounded-full font-black text-[10px] tracking-widest uppercase border border-white/10 hover:bg-white/10 transition-all">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-28 flex items-center justify-between">
+            <!-- Logo (replaces Kodijong / The Food Hub text) -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="navigateTo('home')">
+                <!-- Desktop nav -->
+                <div class="site-logo flex items-center gap-3">
+                <img src="ORDERING/loc2_nav.png" alt="Kodijong logo">
+                <span class="sr-only">Kodijong The Food Hub</span>
+                </div>
+            </div>
+
+            <div class="hidden md:flex gap-8 lg:gap-10 items-center text-xs">
+                <button onclick="navigateTo('home')" class="nav-link text-white/70 hover:text-white uppercase">Home</button>
+                <button onclick="navigateTo('menu')" class="nav-link text-white/70 hover:text-white uppercase">Full Menu</button>
+                <button onclick="scrollToSection('mission')" class="nav-link text-white/70 hover:text-white uppercase">Our Mission</button>
+                <button onclick="scrollToSection('gallery')" class="nav-link text-white/70 hover:text-white uppercase">Gallery</button>
+                <button onclick="scrollToSection('contact')" class="nav-link text-white/70 hover:text-white uppercase">Location</button>
+            </div>
+
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Nav cart button now matches floating cart gradient -->
+                <button id="nav-cart-btn" onclick="navigateTo('checkout')" class="gold-gradient w-10 h-10 rounded-full flex items-center justify-center text-black relative transition-all hover:scale-105">
+                    <i class="fa-solid fa-basket-shopping text-xl"></i>
+                    <span id="nav-cart-count" class="absolute top-0 right-0 bg-white text-black text-[8px] font-black w-4 h-4 rounded-full flex items-center justify-center border border-obsidian">0</span>
+                </button>
+
+                <button onclick="toggleMenu(true)" class="md:hidden text-white text-xl p-2">
+                    <i class="fa-solid fa-bars-staggered"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-obsidian flex flex-col p-8 md:hidden">
+        <div class="flex justify-between items-center mb-12">
+            <div class="flex items-center gap-3">
+                <svg class="h-10 w-10 rounded-md p-1 bg-gradient-to-br from-white/5 to-white/2" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Kodijong logo">
+                    <defs>
+                        <linearGradient id="lg2" x1="0" x2="1" y1="0" y2="1">
+                            <stop offset="0" stop-color="#b90f0f"/>
+                            <stop offset="1" stop-color="#ffd166"/>
+                        </linearGradient>
+                    </defs>
+                    <rect x="4" y="4" width="92" height="92" rx="14" fill="url(#lg2)"/>
+                    <text x="50" y="58" text-anchor="middle" font-family="Plus Jakarta Sans, sans-serif" font-weight="800" font-size="42" fill="#1a1a1a">K</text>
+                </svg>
+                <span class="sr-only">Kodijong The Food Hub</span>
+            </div>
+
+            <button onclick="toggleMenu(false)" class="text-2xl text-white/50"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="flex flex-col gap-6 text-2xl font-sans-serif">
+            <button onclick="navigateTo('home'); toggleMenu(false)" class="text-left text-white/60 hover:text-gold">Home</button>
+            <button onclick="navigateTo('menu'); toggleMenu(false)" class="text-left text-white/60 hover:text-gold">Full Menu</button>
+            <button onclick="scrollToSection('mission'); toggleMenu(false)" class="text-left text-white/60 hover:text-gold">Our Mission</button>
+            <button onclick="scrollToSection('gallery'); toggleMenu(false)" class="text-left text-white/60 hover:text-gold">Gallery</button>
+            <button onclick="scrollToSection('contact'); toggleMenu(false)" class="text-left text-white/60 hover:text-gold">Location</button>
+        </div>
+        <div class="mt-auto pt-10 border-t border-white/5">
+            <p class="text-[10px] text-white/30 uppercase tracking-[0.2em] mb-4">Inquiries</p>
+            <p class="text-gold font-bold text-lg">+27 83 967 9365</p>
+        </div>
+    </div>
+
+    <!-- Floating Cart -->
+    <button id="floating-cart-btn" onclick="navigateTo('checkout')" class="fixed bottom-6 right-6 z-[60] w-14 h-14 sm:w-16 sm:h-16 rounded-full gold-gradient text-black flex items-center justify-center floating-cart group">
+        <i class="fa-solid fa-shopping-bag text-lg sm:text-xl"></i>
+        <span id="cart-count" class="absolute -top-1 -right-1 bg-white text-black text-[10px] font-black w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center border-2 border-obsidian">0</span>
+    </button>
+
+    <main class="pt-20">
+
+        <!-- HOME PAGE -->
+        <div id="page-home" class="page active">
+            <!-- Hero -->
+
+            <section class="relative h-[80vh] sm:h-[85vh] flex items-center overflow-hidden">
+                <div class="hero-overlay">
+                <div class="absolute inset-0">
+                    <img src="ORDERING/ORDERING 13.jpg" class="w-full h-full object-cover opacity-50">
+                    <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-obsidian/40 to-transparent"></div>
+                </div>
+                </div>
+                <div class="relative z-10 max-w-7xl mx-auto px-6">
+                    <h4 class="text-gold font-bold tracking-[0.3em] text-[10px] sm:text-xs mb-4 uppercase">Township Soul Elevated</h4>
+                    <h1 class="text-4xl sm:text-6xl md:text-8xl font-serif mb-8 leading-tight">Experience the best<br><span class="text-gold">Kota</span> in Town.</h1>
+                    <h3 class="text-gold font-bold tracking-[0.3em] text-[10px] sm:text-xs mb-4 uppercase">Fresh ingredients, bold flavors, authentic taste that brings the township to your plate!</h3>
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="navigateTo('menu')" class="gold-gradient text-black px-8 py-4 sm:px-10 sm:py-5 rounded-full font-black text-[10px] tracking-widest hover:scale-105 transition-all uppercase">Explore Menu</button>
+                        <button onclick="scrollToSection('gallery')" class="border border-white/20 text-white px-8 py-4 sm:px-10 sm:py-5 rounded-full font-black text-[10px] tracking-widest hover:bg-white hover:text-black transition-all uppercase">View Gallery</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mission Section -->
+            <section id="mission" class="py-24 bg-onyx">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                        <div class="relative">
+                            <div class="absolute -top-10 -left-10 w-32 h-32 bg-gold/10 rounded-full blur-3xl"></div>
+                            <img src="ORDERING/loc3.jpg" class="rounded-2xl shadow-2xl relative z-10 w-full object-cover aspect-[4/5]">
+                            <div class="absolute -bottom-6 -right-6 bg-gold p-6 rounded-xl hidden sm:block z-20">
+                                <p class="text-black font-black text-xl font-serif">Since 2018</p>
+                            </div>
+                        </div>
+                        <div>
+                            <h1 class="text-gold font-bold tracking-[0.3em] text-[10px] mb-4 uppercase">Our Mission</h1>
+                            <h2 class="text-3xl sm:text-5xl font-serif mb-8 text-white leading-tight">Preserving Kasi Culture, <span class="text-gold">Refining Taste.</span></h2>
+                            <p class="text-white/60 leading-relaxed mb-6 text-sm sm:text-base">
+                                At Kodijong, we believe the township's culinary heart is rich with untapped luxury. Our mission is to serve high quality Kotas, Burgers and home made sandwiches with love and care using local ingredients to provide authentic and delicious flavour to our patrons. We aim to be a convenient and welcoming food joint for takeaways, quick bites and sit-ins.
+                            <p class="text-white/60 leading-relaxed mb-10 text-sm sm:text-base">
+                                We focus on making our food available through various channels including whatsapp, call-ins and website ordering. KODIJONG however is situated in the classic area on the out skirts of Sandton, we also offer delivery services and yes at a cost depending on the distance. Our vision is to become the best food joint with efficiency that brings cultures, religions, ethnic groups and all ages in one roof and therefore we invite you to our stores today and be part of this big family.
+                            </p>
+                            <div class="grid grid-cols-2 gap-8">
+                                <div>
+                                    <h5 class="text-gold font-bold text-2xl mb-1 font-serif">100%</h5>
+                                    <p class="text-white/40 text-[10px] uppercase tracking-widest">Fresh Ingredients</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+      
+            <!-- Popular Selections (carousel with chevrons) -->
+              <section class="py-24 bg-obsidian">
+                <div class="max-w-7xl mx-auto px-6">
+                  <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                    <div>
+                      <h2 class="text-3xl sm:text-4xl font-serif text-white">Popular <span class="text-gold">Picks</span></h2>
+                      <p class="text-white/60 mt-3 text-sm">The most loved flavors in the hub.</p>
+                    </div>
+                    <button onclick="navigateTo('menu')" class="text-gold text-[10px] font-bold border-b border-gold pb-1 tracking-widest hover:text-white hover:border-white transition-all uppercase">Full Menu</button>
+                  </div>
+
+                  <div class="popular-carousel-wrapper">
+                    <!-- left chevron -->
+                    <button aria-label="Scroll popular left" class="pop-carousel-btn left hidden-sm" id="popular-prev">
+                      <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <!-- grid becomes a horizontal scroll container; renderPopular will fill children -->
+                    <div id="popular-grid" class="gap-8 sm:gap-10"></div>
+
+                    <!-- right chevron -->
+                    <button aria-label="Scroll popular right" class="pop-carousel-btn right hidden-sm" id="popular-next">
+                      <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </section>
+
+            <!-- Gallery Section -->
+            <section id="gallery" class="py-24 bg-onyx">
+                <div class="max-w-7xl mx-auto px-6">
+                    <div class="text-center mb-16">
+                        <h4 class="text-gold font-bold tracking-[0.3em] text-[10px] mb-4 uppercase">Visual Journey</h4>
+                        <h2 class="text-3xl sm:text-5xl font-serif text-white">Inside the <span class="text-gold">KODIJONG</span></h2>
+                    </div>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl">
+                            <img src="ORDERING/pic 2.jpg" class="gallery-img w-full h-full">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl md:row-span-2">
+                            <img src="ORDERING/pic 3.jpg" class="gallery-img w-full h-full">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl">
+                            <img src="ORDERING/pic 4.jpg" class="gallery-img w-full h-full">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl">
+                            <img src="ORDERING/pic 6.jpg" class="gallery-img w-full h-full">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl">
+                            <img src="ORDERING/pic 1.jpg" class="gallery-img w-full h-full">
+                        </div>
+                        <div class="gallery-item overflow-hidden rounded-lg sm:rounded-2xl md:col-span-2">
+                            <img src="ORDERING/pic 7.jpg" class="gallery-img w-full h-full max-h-64 object-cover">
+                        </div>
+                    </div>
+
+                    <!-- Google Reviews (responsive + animated) -->
+                    <div class="mt-24">
+                      <div class="text-center mb-12">
+                          <h4 class="text-gold font-bold tracking-[0.3em] text-[15px] mb-4 uppercase">
+                              Customer Love
+                          </h4>
+                          <h2 class="text-3xl sm:text-5xl font-serif text-white">
+                              Google <span class="text-gold">Reviews</span>
+                          </h2>
+                      </div>
+
+                      <div id="reviews-viewport" class="reviews-viewport">
+
+                          <!-- Track -->
+                          <div id="reviews-track" class="reviews-track">
+                              <div class="review-card">
+                                  <div class="stars">★★★★★</div>
+                                  <p class="review-text">
+                                      My son recommended this place and I'm impressed, the place is clean, the service is equal and the food is great 👌oh and it is inexpensive😇.
+                                  </p>
+                                  <div class="review-author">— Penny Penz</div>
+                              </div>
+
+                              <div class="review-card">
+                                  <div class="stars">★★★★★</div>
+                                  <p class="review-text">
+                                      Good food 😋
+                                      Food: 5/5  |  Service: 5/5  |  Atmosphere: 5/5
+                                  </p>
+                                  <div class="review-author">— Rammutla Katiso</div>
+                              </div>
+
+                              <div class="review-card">
+                                  <div class="stars">★★★★★</div>
+                                  <p class="review-text">
+                                      The food was amazing no cap....the only issue was the weather but all in all amazing and best of all amazing food...definitely coming shemm❤️‍🩹
+                                      Food: 5/5  |  Service: 4/5  |  Atmosphere: 4/5
+                                      Wait time
+                                      30-60 min
+                                  </p>
+                                  <div class="review-author">— Ofentse Kekana</div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- MENU PAGE -->
+        <div id="page-menu" class="page">
+            <section class="py-12 sm:py-20 min-h-screen bg-obsidian">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6">
+                  <button onclick="navigateTo('home')" class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-full flex items-center justify-center text-black hover:scale-105 transition-all">
+                        <i class="fa-solid fa-arrow-left"></i>
+                     </button>
+                    <div class="text-center mb-12 sm:mb-16">
+                        <h2 class="text-3xl sm:text-5xl font-serif text-white mb-6">Full <span class="text-gold">Menu</span></h2>
+                        <div class="flex flex-wrap justify-center gap-2 mt-6">
+                            <button class="menu-filter active bg-gold text-black px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[9px] sm:text-[10px] font-black tracking-widest" onclick="filterMenu('kota', this)">KOTAS</button>
+                            <button class="menu-filter bg-onyx text-white/40 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[9px] sm:text-[10px] font-black tracking-widest" onclick="filterMenu('sandwiches', this)">SANDWICHES</button>
+                            <button class="menu-filter bg-onyx text-white/40 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[9px] sm:text-[10px] font-black tracking-widest" onclick="filterMenu('burgers', this)">BURGERS</button>
+                            <button class="menu-filter bg-onyx text-white/40 px-4 py-2 sm:px-6 sm:py-3 rounded-full text-[9px] sm:text-[10px] font-black tracking-widest" onclick="filterMenu('chips', this)">CHIPS</button>
+                        </div>
+                    </div>
+                    <div id="full-menu-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CUSTOMIZE PAGE -->
+        <div id="page-addons" class="page">
+            <section class="py-12 sm:py-20 min-h-screen bg-obsidian">
+                <div class="max-w-3xl mx-auto px-6">
+                    <div id="customizing-header" class="mb-12 flex items-center gap-6">
+                        <!-- back arrow uses gradient now -->
+                        <button onclick="navigateTo('menu')" class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-full flex items-center justify-center text-black hover:scale-105 transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h2 class="text-3xl sm:text-4xl font-serif text-white mb-8">Customize <span class="text-gold">Selection</span></h2>
+                    </div>
+
+                    <div id="pending-product-summary" class="bg-onyx p-4 sm:p-6 rounded-2xl border border-white/10 w-full flex items-center gap-4 sm:gap-6"></div>
+
+                    <h4 class="text-[10px] font-black tracking-[0.2em] text-gold uppercase mb-6 text-center"></h4>
+                    <div id="addons-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4"></div>
+
+                    <div class="mt-12 sm:mt-16 bg-onyx p-6 sm:p-8 rounded-2xl border border-gold/20 flex flex-col gap-6">
+                        <div class="text-center">
+                            <h3 class="text-xl font-serif text-gold">Total with Addons</h3>
+                            <p id="customization-total" class="text-3xl font-black text-white mt-1">R 0.00</p>
+                        </div>
+                        <button id="customize-btn"
+                            onclick="finalizeCustomization()"
+                            class="w-full gold-gradient py-5 rounded-full text-black font-black text-xs tracking-widest uppercase shadow-lg active:scale-95 transition-all">
+                             Add to Basket
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- CHECKOUT PAGE -->
+        <div id="page-checkout" class="page">
+            <section class="py-12 sm:py-20 min-h-screen bg-obsidian">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6">
+                    <div class="flex items-center gap-4 mb-10 sm:mb-12">
+                        <button onclick="navigateTo('menu')" class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-full flex items-center justify-center text-black hover:scale-105 transition-all">
+                            <i class="fa-solid fa-arrow-left"></i>
+                        </button>
+                        <h2 class="text-3xl sm:text-4xl font-serif text-gold">Finalize Order</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-5 gap-10">
+                        <div id="cart-items-list" class="lg:col-span-3 space-y-4"></div>
+                        <div class="lg:col-span-2">
+                            <div class="bg-onyx p-6 sm:p-8 rounded-2xl border border-white/5 sticky top-28">
+                                <h3 class="text-lg font-serif mb-6 border-b border-white/5 pb-4 text-white">Order Details</h3>
+                                <div class="space-y-4 mb-8">
+                                    <div class="space-y-3">
+                                        <input type="text" id="cust-name" placeholder="Full Name" class="premium-input">
+                                        <input type="tel" id="cust-phone" placeholder="WhatsApp Number" class="premium-input">
+                                        <textarea id="order-instructions" rows="2" placeholder="Special Instructions..." class="premium-input resize-none"></textarea>
+                                    </div>
+                                    <div class="pt-6 space-y-2">
+                                        <div class="flex justify-between text-white/40 text-xs"><span>Subtotal</span><span id="summ-sub">R 0.00</span></div>
+                                        <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xl sm:text-2xl font-bold">
+                                            <span class="text-white">Total</span><span id="summ-total" class="text-gold">R 0.00</span>
+                                        </div>
+                                    </div>
+                                    <button onclick="submitToWhatsApp()" class="w-full gold-gradient py-5 mt-4 rounded-xl font-black text-[10px] tracking-[0.2em] text-black shadow-lg flex items-center justify-center gap-3">
+                                        <i class="fa-brands fa-whatsapp text-lg"></i> PLACE ORDER
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer id="contact" class="py-20 bg-black border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center text-center">
+            <h3 class="text-3xl text-gold mb-4 tracking-tight font-serif">KODIJONG THE FOOD HUB</h3>
+            <p class="text-white/50 max-w-sm mb-10 text- sm:text-sm uppercase tracking-widest">Best Township Experience</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mb-16 text-xs text-white/50">
+                <div class="space-y-2">
+                    <h4 class="text-gold uppercase tracking-[0.3em] font-bold mb-4">Location</h4>
+                    <p >232 Far East Bank Street</p>
+                    <p >Sandton, Gauteng</p>
+                    <p >South Africa, 2014</p>
+                </div>
+                <div class="space-y-2">
+                    <h4 class="text-gold uppercase tracking-[0.3em] font-bold mb-4">Hours</h4>
+                    <p >Mon 9AM - 8:30PM</p>
+                    <p >Tue 9AM - 9:30PM</p>
+                    <p >Wed 9AM - 9:30PM</p>
+                    <p >Thu 9AM - 9:30PM</p>
+                    <p >Fri 9AM - 10:00PM</p>
+                    <p >Sat 9AM - 10:30PM</p>
+                    <p >Sun - Closed</p>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="text-gold uppercase tracking-[0.3em] font-bold mb-4">Contact</h4>
+                    <p >+27 83 967 9365</p>
+                    <p >+27 79 261 1260</p>
+                    <p >+27 67 201 7059</p>
+                    <p >kodijong32@gmail.com</p>
+                    <div class="flex justify-center gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-onyx flex items-center justify-center hover:text-gold transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-onyx flex items-center justify-center hover:text-gold transition-all"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-onyx flex items-center justify-center hover:text-gold transition-all"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="text-[10px] text-white/35 uppercase tracking-widest">© 2026 KODIJONG THE FOOD HUB. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- External JS -->
+    <script src="script.js" defer></script>
+</body>
+</html>
